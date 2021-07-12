@@ -1,0 +1,7 @@
+project(example)
+
+add_executable(example_without_main without_main.cc)
+target_link_libraries(example_without_main PRIVATE thread_registrar)
+
+add_executable(example_with_main with_main.cc)
+target_link_libraries(example_with_main PRIVATE thread_registrar)

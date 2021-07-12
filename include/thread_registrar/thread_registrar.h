@@ -22,7 +22,7 @@ struct tr_thread_entry {
 
 // __attribute((__used__)) Prevent being optimized
 #define TR_REGISTER_THREAD_ENTRY(func)                            \
-  static struct tr_thread_entry __default_init_##func TR_SECTION( \
+  static struct tr_thread_entry tr_register_##func TR_SECTION( \
       TR_SECTION_NAME) = {                                        \
       .function = (func),                                         \
   }

@@ -5,7 +5,6 @@
 #include "thread_registrar/thread_registrar.h"
 
 #include <pthread.h>
-#include <stdio.h>
 
 static void *thread_entry_wrapper(void *function) {
   ((tr_thread_entry_function_t)function)();
@@ -24,9 +23,3 @@ void tr_thread_init_all() {
   }
 }
 
-int main() __attribute__((weak));
-int main() {
-  printf("%s\n", "Start from thread_registrar module.");
-  tr_thread_init_all();
-  pthread_exit(NULL);
-}

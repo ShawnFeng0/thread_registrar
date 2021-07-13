@@ -21,11 +21,12 @@ struct tr_thread_entry {
 #define TR_SECTION_END(section) TR_CAT(__stop_, section)
 
 // __attribute((__used__)) Prevent being optimized
-#define TR_REGISTER_THREAD_ENTRY(func)                            \
-  static struct tr_thread_entry tr_register_##func TR_SECTION( \
-      TR_SECTION_NAME) = {                                        \
-      .function = (func),                                         \
-  }
+#define TR_REGISTER_THREAD_ENTRY(func)                              \
+  static struct tr_thread_entry tr_register_##func = {              \
+      .function = (func),                                           \
+  };                                                                \
+  static struct tr_thread_entry *tr_register_##func##_p TR_SECTION( \
+      TR_SECTION_NAME) = &tr_register_##func
 
 #ifdef __cplusplus
 extern "C" {

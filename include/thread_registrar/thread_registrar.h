@@ -12,15 +12,11 @@ struct tr_thread_entry {
 
 #define TR_SECTION_NAME tr_thread_entry_section
 
+// __attribute((__used__)) Prevent being optimized
 #define TR_SECTION_(section) \
   __attribute((__section__(#section))) __attribute((__used__))
 #define TR_SECTION(section) TR_SECTION_(section)
 
-#define TR_CAT(a, b) a##b
-#define TR_SECTION_BEGIN(section) TR_CAT(__start_, section)
-#define TR_SECTION_END(section) TR_CAT(__stop_, section)
-
-// __attribute((__used__)) Prevent being optimized
 #define TR_REGISTER_THREAD_ENTRY(func)                              \
   static struct tr_thread_entry tr_register_##func = {              \
       .function = (func),                                           \

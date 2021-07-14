@@ -6,6 +6,10 @@
 
 #include <pthread.h>
 
+#define TR_CAT(a, b) a##b
+#define TR_SECTION_BEGIN(section) TR_CAT(__start_, section)
+#define TR_SECTION_END(section) TR_CAT(__stop_, section)
+
 static void *thread_entry_wrapper(void *function) {
   ((tr_thread_entry_function_t)function)();
   return NULL;

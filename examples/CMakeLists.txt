@@ -5,3 +5,11 @@ target_link_libraries(example_without_main PRIVATE thread_registrar_main)
 
 add_executable(example_with_main with_main.cc)
 target_link_libraries(example_with_main PRIVATE thread_registrar_main)
+
+add_library(threads without_main.cc)
+target_link_libraries(threads PRIVATE thread_registrar)
+add_executable(example_with_lib with_main.cc)
+target_link_libraries(example_with_lib PRIVATE threads thread_registrar)
+
+add_executable(example_with_two_source without_main.cc with_main.cc)
+target_link_libraries(example_with_two_source PRIVATE thread_registrar_main)

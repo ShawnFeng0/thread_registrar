@@ -25,7 +25,7 @@ void thread_2() {
     sleep(1);
   }
 }
-TR_REGISTER_THREAD_ENTRY(thread_2);
+//TR_REGISTER_THREAD_ENTRY(thread_2);
 
 int main() {
   printf("%s\n", "Start from main.");

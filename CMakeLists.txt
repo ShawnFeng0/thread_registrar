@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 project(thread_registrar)
 
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)
 
 option(THREAD_REGISTRAR_BUILD_EXAMPLES "Build examples" OFF)
+
+add_link_options(-T${CMAKE_CURRENT_SOURCE_DIR}/tr_link.ld)
 
 add_library(${PROJECT_NAME} src/thread_registrar.c)
 target_link_options(${PROJECT_NAME} PUBLIC -pthread)

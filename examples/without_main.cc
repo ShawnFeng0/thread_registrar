@@ -6,7 +6,7 @@
 
 #define LOGGER_MARK() printf("%s:%d\r\n", __PRETTY_FUNCTION__, __LINE__)
 
-void thread_1() {
+static void thread_1() {
   int i = 2;
   while (i--) {
     LOGGER_MARK();
@@ -15,7 +15,7 @@ void thread_1() {
 }
 TR_REGISTER_THREAD_ENTRY(thread_1);
 
-void thread_2() {
+static void thread_2() {
   int i = 3;
   while (i--) {
     LOGGER_MARK();

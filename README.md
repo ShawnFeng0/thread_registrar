@@ -2,13 +2,15 @@
 
 使用C语言和GCC编译器的特性写成的线程注册库, 使嵌入式软件中守护线程(不必销毁)的创建更加方便.
 
-原理: 在编译期间使用函数宏注册线程函数, 并自动在`main`函数中使用`pthread_create`启动各个注册的函数.
+原理: 在编译期间使用函数宏注册线程函数, 并自动在`main`函数中使用`pthread_create`启动各个注册的函数，想法来源：https://mgalgs.github.io/2013/05/10/hacking-your-ELF-for-fun-and-profit.html
 
-## 依赖
+**这是一个实验性质的库，只是为了演示在代码中利用自定义section的技巧能到做一些有趣的事情。**
 
-编译器: gcc
+## 依赖和限制
 
-库: `pthread`
+需要使用gcc编译器，pthread库。 
+
+***只有直接被链接器链接的object文件才可以使用，其他lib中注册的section会被链接器丢弃，目前这个还没解决办法。类似讨论： https://stackoverflow.com/questions/20669171/start-section-and-stop-section-symbols-missing-when-linking-to-library***
 
 ## 怎么使用
 
